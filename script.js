@@ -1,14 +1,24 @@
 const container = document.querySelector(".container");
-let div;
+let gridSquare;
+let rowContainer;
+
+function createRows () {
+    for (i = 0; i < 16; i++) {
+        rowContainer = document.createElement("div");
+        rowContainer.classList.add("rowContainer");
+        container.appendChild(rowContainer);
+    }
+}
 
 function createDivs() {
-    for (i = 0; i < 64; i++) {
-    div = document.createElement("div");
-    console.log(div.nodeType);
-    div.classList.add("gridDiv");
-    div.textContent = "Aaa";
-    container.appendChild(div);
+    for (i = 0; i < 16; i++) {
+    gridSquare = document.createElement("div");
+    gridSquare.classList.add("gridSquare");
+    gridSquare.textContent = "Aaa";
+    rowContainer.appendChild(gridSquare);
     }    
 }
-createDivs()
+
+createRows();
+rowContainer.forEach(createDivs());
 
