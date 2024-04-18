@@ -13,14 +13,26 @@
 
 
 .container {
-    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: fit-content;
+    margin:auto;
+    margin-top: 40px;
 }
 
 .rowContainer {
-    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .gridSquare {
-    border: 1px solid green;
+    border: 1px solid #a9a9a9;
+    width: 30px;
+    height: 30px;   
 }
+
+
 
