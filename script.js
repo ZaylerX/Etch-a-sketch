@@ -19,6 +19,7 @@ function createRows () {
             }    
     }
 
+
 createRows();
 
 
@@ -32,11 +33,10 @@ function getRandomColor() {
 rdmColor = color; 
 } 
 
-getRandomColor();
+document.querySelectorAll(".gridSquare").forEach(el => el.addEventListener("mouseover", () => {
+    el.style.backgroundColor = "blue";
+}));
 
-gridCell.addEventListener("mouseover", () => {
-    gridCell.style.backgroundColor = rdmColor;
-}); 
 
 
 
