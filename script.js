@@ -1,42 +1,54 @@
 const container = document.querySelector(".container");
-let gridCell;
-let rowContainer;
 
-function createRows () {
-    for (i = 0; i < 16; i++) {
-        rowContainer = document.createElement("div");
-        rowContainer.classList.add("rowContainer");
-        container.appendChild(rowContainer);
-        createCell();
+
+function createGrid(size = 16) {
+    for (let i = 0; i < size; i++) {
+        const gridRow = document.createElement("div");
+        gridRow.className = "gridRow";
+        container.appendChild(gridRow);
+
+        for (let j = 0; j < size; j++) {
+            const gridCell = document.createElement("div");
+            gridCell.className = "cell";
+            gridRow.appendChild(gridCell);
         }
     }
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => {
+        cell.addEventListener("mouseover", () => {
+            cell.style.backgroundColor = getRandomColor();
+            if (cell.style.opacity < 1) {
+                cell.style.opacity  = +cell.style.opacity + 0.1;
+            }
+        });
+    });
+}
 
-    function createCell() {
-        for (j = 0; j < 16; j++) {
-            gridCell = document.createElement("div");
-            gridCell.classList.add("gridSquare");
-            rowContainer.appendChild(gridCell);
-            }    
-    }
+createGrid();
 
 
-createRows();
-
-
-let rdmColor;
-function getRandomColor() {
-    let letters = "0123456789ABCDEF";
+function getRandomColor () {
+    let letters = "0123456789ABCDEF"
     let color = "#";
     for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)]
-    }  
-rdmColor = color; 
-} 
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
-document.querySelectorAll(".gridSquare").forEach(el => el.addEventListener("mouseover", () => {
-    el.style.backgroundColor = "blue";
-}));
 
+
+const gridSizeBtn = document.querySelector(".gridSize");
+
+gridSizeBtn.addEventListener("click", () => {
+    container.replaceChildren();
+    size = prompt("How many rows and cols do you want?") 
+    if (size > 100) {
+        alert("The number is too high, please enter a valid number");
+    } else {
+        createGrid(size);
+    }
+});
 
 
 
